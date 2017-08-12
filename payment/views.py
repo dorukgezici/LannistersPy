@@ -57,8 +57,8 @@ def generate_prepaid_card(request):
         if value > 0:
             card = PrepaidCard.objects.create(value=value)
             return JsonResponse({"barcode": card.barcode})
-    except:
-        raise Http404()
+    except Exception as error:
+        return JsonResponse({"error": error})
 
 
 class ProductView(generic.CreateView):
